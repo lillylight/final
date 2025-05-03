@@ -331,7 +331,7 @@ export default function Home() {
     if (typeof window === 'undefined') return;
     let paymentSuccessDetected = false;
 
-    const logState = (msg) => {
+    const logState = (msg: string) => {
       console.log(`[PAYMENT DEBUG] ${msg}`, { image, step });
     };
 
