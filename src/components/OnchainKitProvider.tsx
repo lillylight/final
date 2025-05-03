@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from 'react';
 import { OnchainKitProvider } from '@coinbase/onchainkit';
 import { WagmiProvider, createConfig } from 'wagmi';

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { Wallet, useWalletContext } from '@coinbase/onchainkit/wallet';
 import { useAccount } from 'wagmi';
