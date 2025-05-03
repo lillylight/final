@@ -612,9 +612,7 @@ export default function Home() {
                                       setStep('processing');
                                       triggerAnalysis(image);
                                     }}
-                                  >
-                                    Reveal My Roots
-                                  </CheckoutButton>
+                                  />
                                 </div>
                                 <div className="flex justify-center w-full mt-2">
                                   <CheckoutStatus />
