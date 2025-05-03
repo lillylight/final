@@ -3,8 +3,8 @@ import { useWalletContext } from '@coinbase/onchainkit/wallet';
 
 export function useWalletStatus() {
   const walletCtx = useWalletContext?.();
-  // Try to find the correct property for address/connection
-  const address = walletCtx?.address || walletCtx?.selectedAddress || walletCtx?.walletAddress || null;
+  // Use only the correct property for wallet address (fix build error)
+  const address = walletCtx?.address || null;
   const [isConnected, setIsConnected] = useState(!!address);
 
   useEffect(() => {
