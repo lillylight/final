@@ -605,13 +605,8 @@ export default function Home() {
                               <div className="flex flex-col items-center w-full">
                                 <div style={{ display: step === 'upload' ? 'block' : 'none' }}>
                                   <CheckoutButton
-                                    id="pay-btn"
                                     coinbaseBranded
                                     className="openai-btn openai-btn-green px-4 py-2 text-base mx-auto mt-7 w-40"
-                                    onSuccess={() => {
-                                      setStep('processing');
-                                      triggerAnalysis(image);
-                                    }}
                                   />
                                 </div>
                                 <div className="flex justify-center w-full mt-2">
