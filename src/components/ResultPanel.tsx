@@ -39,34 +39,30 @@ export default function ResultPanel({
   // Generate PNG of pie chart after render
   useEffect(() => {
     if (!pieChartRef.current || ancestryPieData.length === 0) return;
-    
-    // Clear any previous URL
+    // TypeScript fix: pieChartRef.current may be null
+    // Add optional chaining and a runtime check
+    const chartElement = pieChartRef.current?.querySelector('.ancestry-pie-chart-capture');
+    if (!chartElement) return;
     setPieChartDataUrl(null);
-    
     // Longer delay to ensure chart is fully rendered
     const timer = setTimeout(() => {
       try {
-        const chartElement = pieChartRef.current.querySelector('.ancestry-pie-chart-capture');
-        if (chartElement) {
-          console.log('Capturing chart element:', chartElement);
-          chartToImage(chartElement as HTMLElement).then(url => {
-            console.log('Pie chart captured successfully, length:', url?.length || 0);
-            if (url && url.startsWith('data:image/png;base64,')) {
-              setPieChartDataUrl(url);
-            } else {
-              console.error('Invalid chart data URL format');
-            }
-          }).catch(err => {
-            console.error('Error capturing chart:', err);
-          });
-        } else {
-          console.error('Chart element not found in ref');
-        }
+        if (!chartElement) return;
+        console.log('Capturing chart element:', chartElement);
+        chartToImage(chartElement as HTMLElement).then(url => {
+          console.log('Pie chart captured successfully, length:', url?.length || 0);
+          if (url && url.startsWith('data:image/png;base64,')) {
+            setPieChartDataUrl(url);
+          } else {
+            console.error('Invalid chart data URL format');
+          }
+        }).catch(err => {
+          console.error('Error capturing chart:', err);
+        });
       } catch (err) {
-        console.error('Error during chart capture setup:', err);
+        console.error('Error in chart capture try block:', err);
       }
-    }, 1500); // Increased delay to 1.5 seconds
-    
+    }, 900);
     return () => clearTimeout(timer);
   }, [ancestryPieData]);
 
